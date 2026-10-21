@@ -17,4 +17,8 @@ export class TaskService {
   findAll() {
     return this.tasks;
   }
+
+  findById(id: number) {
+    return this.tasks.find((task) => task.id === id);
+  }
 }
