@@ -27,4 +27,16 @@ export class TaskService {
 
     return task;
   }
+
+  create() {
+    const newTask = {
+      id: this.tasks.length + 1,
+      title: 'New task',
+      isCompleted: false,
+    };
+
+    this.tasks.push(newTask);
+
+    return this.tasks;
+  }
 }
