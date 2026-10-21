@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateTaskDto } from './dto/create-task.dto.js';
 
 @Injectable()
 export class TaskService {
@@ -28,10 +29,12 @@ export class TaskService {
     return task;
   }
 
-  create() {
+  create(dto: CreateTaskDto) {
+    const { title } = dto;
+
     const newTask = {
       id: this.tasks.length + 1,
-      title: 'New task',
+      title,
       isCompleted: false,
     };
 
