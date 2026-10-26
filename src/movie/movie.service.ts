@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateMovieDto } from './dto/create-movie.dto.js';
 import { MovieEntity } from './entities/movie.entity.js';
 
 @Injectable()
@@ -12,5 +13,11 @@ export class MovieService {
 
   async findAll(): Promise<MovieEntity[]> {
     return await this.movieRepository.find();
+  }
+
+  async create(dto: CreateMovieDto): Promise<MovieEntity> {
+    const movie = this.movieRepository.create(dto);
+
+    return this.movieRepository.save(movie);
   }
 }
