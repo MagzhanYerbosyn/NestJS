@@ -1,20 +1,14 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { MovieService } from './movie.service.js';
 
 @Controller({
   path: 'movies',
 })
 export class MovieController {
+  constructor(private readonly movieService: MovieService) {}
+
   @Get()
-  findAll(@Query('genre') genre: string) {
-    return genre
-      ? `Фильмы в жанре ${genre}`
-      : [
-          {
-            title: 'Fight Club',
-          },
-          {
-            title: 'Pulp Fiction',
-          },
-        ];
+  findAll() {
+    return this.movieService.findAll();
   }
 }
