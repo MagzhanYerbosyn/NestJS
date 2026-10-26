@@ -1,5 +1,6 @@
 import {
   IsArray,
+  IsEnum,
   IsInt,
   IsNotEmpty,
   IsOptional,
@@ -7,6 +8,12 @@ import {
   IsString,
   Length,
 } from 'class-validator';
+
+export enum TaskTag {
+  WORK = 'work',
+  STUDY = 'study',
+  HOME = 'home',
+}
 
 export class CreateTaskDto {
   @IsString()
@@ -24,7 +31,7 @@ export class CreateTaskDto {
   priority: number;
 
   @IsArray({ message: 'Теги должны быть массивом' })
-  @IsString({ each: true, message: 'Каждый тег должен быть строкой' })
+  @IsEnum(TaskTag, { each: true, message: 'Недопустимый тип тега' })
   @IsOptional()
-  tags: string[];
+  tags: TaskTag[];
 }
