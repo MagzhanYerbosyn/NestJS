@@ -16,6 +16,7 @@ export class TaskService {
       isCompleted: true,
     },
   ];
+
   findAll() {
     return this.tasks;
   }
