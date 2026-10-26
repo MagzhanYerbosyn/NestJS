@@ -12,7 +12,14 @@ export class MovieService {
   ) {}
 
   async findAll(): Promise<MovieEntity[]> {
-    return await this.movieRepository.find();
+    return await this.movieRepository.find({
+      where: {
+        isPublic: true,
+      },
+      order: {
+        createdAt: 'desc',
+      },
+    });
   }
 
   async create(dto: CreateMovieDto): Promise<MovieEntity> {
