@@ -5,6 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  type Relation,
   UpdateDateColumn,
 } from 'typeorm';
 import { MovieEntity } from '../../movie/entities/movie.entity.js';
@@ -38,7 +39,7 @@ export class ReviewEntity {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'movie_id' })
-  movie: MovieEntity;
+  movie: Relation<MovieEntity>;
 
   @CreateDateColumn({
     name: 'create_at',

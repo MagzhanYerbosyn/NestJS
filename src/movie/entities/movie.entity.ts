@@ -4,6 +4,7 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
+  type Relation,
   UpdateDateColumn,
 } from 'typeorm';
 import { ReviewEntity } from '../../review/entities/review.entity.js';
@@ -48,7 +49,7 @@ export class MovieEntity {
   isAvailable: boolean;
 
   @OneToMany(() => ReviewEntity, (review) => review.movie)
-  reviews: ReviewEntity[];
+  reviews: Relation<ReviewEntity[]>;
 
   @CreateDateColumn({
     name: 'create_at',
