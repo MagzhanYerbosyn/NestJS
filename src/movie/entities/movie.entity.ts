@@ -27,6 +27,7 @@ export class MovieEntity {
   description: string;
 
   @Column({
+    name: 'release_year',
     type: 'int',
     unsigned: true,
   })
@@ -40,18 +41,20 @@ export class MovieEntity {
   })
   rating: number;
 
-  @Column({ type: 'boolean', default: false })
+  @Column({
+    name: 'is_available',
+    type: 'boolean',
+    default: false,
+  })
   isAvailable: boolean;
 
-  @Column({
-    type: 'date',
-    nullable: true,
+  @CreateDateColumn({
+    name: 'create_at',
   })
-  releaseDate: string;
-
-  @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({
+    name: 'updated_at',
+  })
   updatedAt: Date;
 }
