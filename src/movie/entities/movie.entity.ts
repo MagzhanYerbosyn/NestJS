@@ -2,18 +2,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  Generated,
   OneToMany,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ReviewEntity } from '../../review/entities/review.entity.js';
 
 @Entity({ name: 'movies' })
 export class MovieEntity {
-  //@PrimaryGeneratedColumn()
-  @PrimaryColumn()
-  @Generated('uuid')
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({
