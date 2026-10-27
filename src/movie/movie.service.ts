@@ -54,4 +54,12 @@ export class MovieService {
 
     return true;
   }
+
+  async delete(id: number): Promise<number> {
+    const movie = await this.findById(id);
+
+    await this.movieRepository.remove(movie);
+
+    return movie.id;
+  }
 }
