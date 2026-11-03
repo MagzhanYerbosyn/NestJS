@@ -2,11 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
   type Relation,
   UpdateDateColumn,
 } from 'typeorm';
+import { ActorEntity } from '../../actor/entities/actor.entity.js';
 import { ReviewEntity } from '../../review/entities/review.entity.js';
 
 @Entity({ name: 'movies' })
@@ -50,6 +53,14 @@ export class MovieEntity {
 
   @OneToMany(() => ReviewEntity, (review) => review.movie)
   reviews: Relation<ReviewEntity[]>;
+
+  @ManyToMany(() => ActorEntity, (actor) => actor.movies)
+  @JoinTable({
+    name: 'movie_actors',
+    joinColumn: { name: 'movieId', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'actor_id', referencedColumnName: 'id' },
+  })
+  actors: ActorEntity[];
 
   @CreateDateColumn({
     name: 'create_at',

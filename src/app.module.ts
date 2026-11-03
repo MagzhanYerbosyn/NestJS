@@ -7,6 +7,7 @@ import { getTypeOrmConfig } from './config/typeorm.config.js';
 import { MovieModule } from './movie/movie.module.js';
 import { TaskModule } from './task/task.module.js';
 import { ReviewModule } from './review/review.module.js';
+import { ActorModule } from './actor/actor.module.js';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { ReviewModule } from './review/review.module.js';
     TaskModule,
     MovieModule,
     ReviewModule,
+    ActorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
