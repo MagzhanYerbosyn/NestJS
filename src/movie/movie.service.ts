@@ -35,6 +35,9 @@ export class MovieService {
       where: {
         id,
       },
+      relations: {
+        actors: true,
+      },
     });
 
     if (!movie) throw new NotFoundException('Фильм не найден');
